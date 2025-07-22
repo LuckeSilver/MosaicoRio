@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosaico Rio - Igreja</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sage-green: #8B9B8B;
+            --warm-gold: #D4B574;
+            --terracotta: #C67B5C;
+            --charcoal: #4A4A4A;
+            --white: #FFFFFF;
+            --my-black: #404040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            height: 100vh;
+        }
+
+        ul > li {
+            list-style: none;
+            font-size: 1.2rem;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--sage-green) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--charcoal) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--terracotta) !important;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--sage-green), var(--warm-gold));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .logo{ max-width: 80px;}
+
+        .btn-primary {
+            background: var(--terracotta);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #B56A4D;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(198, 123, 92, 0.4);
+        }
+
+        .btn-outline-light {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-light:hover {
+            background: var(--white);
+            color: var(--sage-green);
+            transform: translateY(-2px);
+        }
+
+        .church-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .church-icon i {
+            font-size: 3rem;
+            color: var(--sage-green);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--charcoal);
+        }
+
+        .containerValores {
+          max-width: 100%;
+        }
+
+        .valores-carousel {
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .valor-card {
+            min-width: 350px;
+            background: var(--charcoal);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 0 15px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .valor-card:hover {
+            transform: translateY(-20px);
+        }
+
+        .valor-card.sage { background: var(--sage-green); }
+        .valor-card.gold { background: var(--warm-gold); }
+        .valor-card.terracotta { background: var(--terracotta); }
+        .valor-card.myBlack { background: var(--my-black); }
+
+        .valor-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .valor-icon i {
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .valor-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .valor-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: var(--terracotta);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev { left: -25px; }
+        .carousel-nav.next { right: -25px; }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--terracotta);
+            transform: scale(1.2);
+        }
+
+        .sobre-section {
+            background: linear-gradient(135deg, var(--warm-gold), var(--sage-green));
+            color: var(--white);
+        }
+
+        .sobre-image img {
+            transition: transform 0.3s ease;
+        }
+
+        .sobre-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .sobre-content {
+            padding-left: 2rem;
+        }
+
+        .stats-grid-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item-horizontal {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: linear-gradient(135deg, var(--sage-green), var(--warm-gold));
+            border-radius: 10px;
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item-horizontal:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number-small {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .stat-label-small {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer h5 {
+            color: var(--warm-gold);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--terracotta);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: var(--warm-gold);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .valor-card { min-width: 280px; margin: 0 10px; }
+            .carousel-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img class="logo" src="./assets/imgs/logo_preto.png" alt="">Mosaico Rio
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#valores">Valores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#doe">Doe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <div class="church-icon">
+                        <img src="./assets/imgs/logo_preto.png" alt="logo da igreja" style="background-color: none; border-radius: 20px; max-width: 100%; height: auto;">
+                    </div>
+                    <h1>Mosaico Rio</h1>
+                    <p>A Igreja Mosaico Rio é uma comunidade de fé no subúrbio carioca, uma igreja que está nascendo para glória de Deus.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#sobre" class="btn btn-primary">Conheça Nossa História</a>
+                        <a href="#contato" class="btn btn-outline-light">Participe Conosco</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title" style="color: var(--terracotta);">Sobre Nós</h2>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="sobre-image">
+                        <img src="./assets/imgs/fundos_logos.jpg" alt="Ministério Mosaico Rio" class="img-fluid rounded-3 shadow-lg">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="sobre-content">
+                        <p class="lead mb-3" style="color: var(--charcoal);">A palavra ‘mosaico’ representa a união de diferentes peças para formar algo belo e harmonioso. Queremos inspirar o senso de igreja local e comunidade, uma expressão coletiva de Cristo.</p>
+
+                        <p class="lead mb-3" style="color: var(--charcoal);">Assim como um mosaico é formado por peças individuais, a Igreja Mosaico Rio, através da anunciação das promessas do evangelho, deseja formar uma expressão coletiva atuante no bairro.</p>
+                        
+                        <p class="lead mb-3" style="color: var(--charcoal);">A Igreja deve ser vista como o espaço que acolhe todo tipo de pessoa, independentemente das suas origens e histórias, sempre promovendo unidade em Cristo, através da conversão e transformação pelo evangelho.</p>
+
+                        <p class="lead mb-3" style="color: var(--charcoal);">Um mosaico é feito de pedaços quebrados, simbolizando a transformação daquilo que estava sem sentido e fragmentado, tornando-se em algo novo e recebendo novo significado.</p>
+                        <!-- <div class="stats-grid-horizontal">
+                            <div class="stat-item-horizontal">
+                                <div class="stat-number-small">15</div>
+                                <div class="stat-label-small">Anos de Ministério</div>
+                            </div>
+                            <div class="stat-item-horizontal">
+                                <div class="stat-number-small">800+</div>
+                                <div class="stat-label-small">Membros Ativos</div>
+                            </div>
+                            <div class="stat-item-horizontal">
+                                <div class="stat-number-small">25</div>
+                                <div class="stat-label-small">Ministérios</div>
+                            </div>
+                            <div class="stat-item-horizontal">
+                                <div class="stat-number-small">5</div>
+                                <div class="stat-label-small">Localidades</div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores Section -->
+    <section id="valores" class="section">
+        <div class="container containerValores">
+            <h2 class="section-title">Nossos Valores</h2>
+            
+            <div class="valores-carousel">
+                <button class="carousel-nav prev" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="valor-card sage">
+                        <div class="valor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="valor-title">Viver Missional</h3>
+                        <p class="valor-description">Entendemos que cada momento das nossas vidas, dentro ou fora da igreja, deve ser voltado para o serviço a Deus. Fazendo diferença onde quer que estejamos.</p>
+                    </div>
+                    
+                    <div class="valor-card terracotta">
+                        <div class="valor-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="valor-title">Valorização da Vida</h3>
+                        <p class="valor-description">Acreditamos no valor único de cada pessoa, suas histórias e culturas, reconhecendo que cada vida é chamada de forma especial para refletir e manifestar a glória de Deus.</p>
+                    </div>
+                    
+                    <div class="valor-card gold">
+                        <div class="valor-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="valor-title">Dedicação e Capricho</h3>
+                        <p class="valor-description">Nos esforçamos para realizar todas as coisas com o mais alto nível de dedicação. Nosso objetivo é cumprir a obra do Senhor com excelência, integridade e total compromisso.</p>
+                    </div>
+
+                    <div class="valor-card myBlack">
+                        <div class="valor-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="valor-title">Mensagem Transformadora</h3>
+                        <p class="valor-description">Nosso compromisso é levar uma mensagem de esperança e transformação a todos. Acreditamos que o evangelho tem o poder de mudar vidas e trazer cura.</p>
+                    </div>
+                </div>
+                
+                <button class="carousel-nav next" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Doe Section -->
+    <section id="doe" class="section" style="background: linear-gradient(135deg, var(--terracotta), var(--warm-gold));">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h2 class="section-title text-white">Caso queira contribuir conosco</h2>
+                    <p class="lead mb-4">Sua generosidade nos permite continuar transformando vidas e expandindo o Reino de Deus. Cada contribuição, independente do valor, faz a diferença em nossa missão.</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <button class="btn btn-light btn-lg">PIX: mosaicorio@igreja.com</button>
+                        <a href="https://wa.me/5521992314639" target="_blank" class="btn btn-outline-light btn-lg">Outras Formas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h5>Mosaico Rio</h5>
+                    <p>Uma comunidade de fé no subúrbio carioca, transformando vidas através do amor de Cristo.</p>
+                    <div class="social-links">
+                        <a target="_blank" href="https://www.instagram.com/mosaicorio/"><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" href="#"><i class="fab fa-youtube"></i></a>
+                        <a target="_blank" href="https://wa.me/5521992314639"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5>Cultos</h5>
+                    <p><i class="fas fa-clock me-2"></i>Domingos - 10h</p>
+                    <p><i class="fas fa-clock me-2"></i>Grupo Caseiro | Ter - 19h30</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Rua Chaves Farias, 260 - São Cristóvão/RJ</p>
+                </div>
+                
+                <div>
+                    <h5>Contato</h5>
+                    <p><i class="fas fa-phone me-2"></i>(21) 99231-4639</p>
+                    <p><i class="fas fa-envelope me-2"></i>contato@mosaicorio.com.br</p>
+                    <p><i class="fas fa-globe me-2"></i>www.mosaicorio.com.br</p>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="opacity: 0.3;">
+            <div class="text-center">
+                <p>&copy; 2025 Mosaico Rio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const slideWidth = 380; // Largura do card + margin
+
+        function updateCarousel() {
+            const container = document.getElementById('carouselContainer');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            // Centralizar o slide ativo
+            const offset = currentSlide * slideWidth;
+            const containerWidth = container.parentElement.offsetWidth;
+            const centeredOffset = (containerWidth / 2) - (slideWidth / 2) - offset;
+            
+            container.style.transform = `translateX(${centeredOffset}px)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto slide
+        setInterval(nextSlide, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize carousel on load
+        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
+    </script>
+</body>
+</html>
