@@ -440,7 +440,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Sessão Home -->
     <section id="home" class="hero">
         <div class="container">
             <div class="row align-items-center">
@@ -459,7 +459,7 @@
         </div>
     </section>
 
-    <!-- Sobre Section -->
+    <!-- Sessão Sobre -->
     <section id="sobre" class="section">
         <div class="container">
             <div class="row">
@@ -482,31 +482,14 @@
                         <p class="lead mb-3" style="color: var(--charcoal);">A Igreja deve ser vista como o espaço que acolhe todo tipo de pessoa, independentemente das suas origens e histórias, sempre promovendo unidade em Cristo, através da conversão e transformação pelo evangelho.</p>
 
                         <p class="lead mb-3" style="color: var(--charcoal);">Um mosaico é feito de pedaços quebrados, simbolizando a transformação daquilo que estava sem sentido e fragmentado, tornando-se em algo novo e recebendo novo significado.</p>
-                        <!-- <div class="stats-grid-horizontal">
-                            <div class="stat-item-horizontal">
-                                <div class="stat-number-small">15</div>
-                                <div class="stat-label-small">Anos de Ministério</div>
-                            </div>
-                            <div class="stat-item-horizontal">
-                                <div class="stat-number-small">800+</div>
-                                <div class="stat-label-small">Membros Ativos</div>
-                            </div>
-                            <div class="stat-item-horizontal">
-                                <div class="stat-number-small">25</div>
-                                <div class="stat-label-small">Ministérios</div>
-                            </div>
-                            <div class="stat-item-horizontal">
-                                <div class="stat-number-small">5</div>
-                                <div class="stat-label-small">Localidades</div>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Valores Section -->
+    <!--  Sessão Valores -->
     <section id="valores" class="section">
         <div class="container containerValores">
             <h2 class="section-title">Nossos Valores</h2>
@@ -554,16 +537,10 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            
-            <!-- <div class="carousel-indicators">
-                <span class="indicator active" onclick="goToSlide(0)"></span>
-                <span class="indicator" onclick="goToSlide(1)"></span>
-                <span class="indicator" onclick="goToSlide(2)"></span>
-            </div> -->
         </div>
     </section>
 
-    <!-- Doe Section -->
+    <!-- Seção Doe -->
     <section id="doe" class="section" style="background: linear-gradient(135deg, var(--terracotta), var(--warm-gold));">
         <div class="container">
             <div class="row">
@@ -656,7 +633,7 @@
         // Auto slide
         setInterval(nextSlide, 5000);
 
-        // Smooth scrolling for navigation links
+        // Rolagem suave nos links de navegação
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -670,7 +647,7 @@
             });
         });
 
-        // Initialize carousel on load
+        // Inicializar o carrossel ao carregar
         window.addEventListener('load', updateCarousel);
         window.addEventListener('resize', updateCarousel);
     </script>
